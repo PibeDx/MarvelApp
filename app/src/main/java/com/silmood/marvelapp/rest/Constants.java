@@ -33,5 +33,12 @@ public class Constants {
     public static final String MAIN_URL = "http://gateway.marvel.com:80/v1/public";
     public static final String CHARACTERS_URL = "/characters";
 
+    public static final String COMIC_TITLE_KEY = "title";
+    public static final String COMIC_ISSUE_KEY = "issueNumber";
+    public static final String COMIC_PAGES_KEY = "pageCount";
+    public static final String COMICS_URL = "/comics";
+
+
+
 
 }

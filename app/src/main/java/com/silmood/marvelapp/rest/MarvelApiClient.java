@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.silmood.marvelapp.rest.model.CharactersListResponse;
+import com.silmood.marvelapp.rest.model.ComicsListResponse;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -34,6 +35,7 @@ public class MarvelApiClient {
         //Build the response parser
         Gson gsonConf = new GsonBuilder()
                 .registerTypeAdapter(CharactersListResponse.class , new CharactersListResponseDeserializer())
+                .registerTypeAdapter(ComicsListResponse.class, new ComicsListResponseDeserializer())
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
 
@@ -70,4 +72,20 @@ public class MarvelApiClient {
                 hash,
                 callback);
     }
+
+
+    public void requestComicsList (int limit, int offset, Callback<ComicsListResponse> callback){
+        Long ts = UtilMethods.generateTimeStamp();
+        String hash = UtilMethods.generateHash(ts);
+
+        getApiService().requestComicsList(limit,
+                offset,
+                Constants.API_PUBLIC_KEY,
+                ts,
+                hash,
+                callback);
+    }
+
+
+
 }
